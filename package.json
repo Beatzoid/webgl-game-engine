@@ -5,7 +5,8 @@
     "main": "app.ts",
     "scripts": {
         "start": "parcel serve index.html",
-        "dev": "parcel index.html"
+        "dev": "parcel index.html",
+        "build": "tsc"
     },
     "keywords": [],
     "author": "",

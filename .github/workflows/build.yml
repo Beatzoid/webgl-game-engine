@@ -1,0 +1,30 @@
+name: Build
+
+# Controls when the action will run.
+on:
+    # Triggers the workflow on push or pull request events but only for the master branch
+    push:
+        branches: [master]
+    pull_request:
+        branches: [master]
+
+jobs:
+    build:
+        runs-on: ${{ matrix.os }}
+
+        strategy:
+            matrix:
+                node-version: [14.x, 15.x]
+                os: [ubuntu-latest, windows-latest, macOS-latest]
+
+        steps:
+            - uses: actions/checkout@v1
+            - name: Install Node
+              uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-version }}
+
+            - name: Install Dependencies
+              run: yarn install
+            - name: Compile Typescript
+              run: yarn build
