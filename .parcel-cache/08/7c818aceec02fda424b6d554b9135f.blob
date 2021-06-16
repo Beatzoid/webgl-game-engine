@@ -1,0 +1,82 @@
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/**
+ * Represents a WebGL Shader
+ */ parcelHelpers.export(exports, "Shader", ()=>Shader
+);
+var _gl = require("./gl");
+class Shader {
+    /**
+     * Creates a new shader
+     * @param name The name of the shader
+     * @param vertexSource The source of the vertex shader
+     * @param fragmentSource The source of the fragment shader
+     */ constructor(name1, vertexSource, fragmentSource){
+        this._attributes = {
+        };
+        this._uniforms = {
+        };
+        this._name = name1;
+        const vertexShader1 = this.loadShader(vertexSource, _gl.gl.VERTEX_SHADER);
+        const fragmentShader1 = this.loadShader(fragmentSource, _gl.gl.FRAGMENT_SHADER);
+        this.createProgram(vertexShader1, fragmentShader1);
+        this.detectAtttributes();
+        this.detectUniforms();
+    }
+    /**
+     * The name of the shader
+     */ get name() {
+        return this._name;
+    }
+    /**
+     * Gets the location of an attribute with the specified name
+     * @param name The name of the attribute
+     */ getAttributeLocation(name) {
+        if (this._attributes[name] === undefined) throw new Error(`Unable to find an attribute named "${name}" in shader "${this._name}"`);
+        return this._attributes[name];
+    }
+    /**
+     * Gets the location of an uniform with the specified name
+     * @param name The name of the uniform
+     */ getUniformLocation(name) {
+        if (this._uniforms[name] === undefined) throw new Error(`Unable to find an uniform named "${name}" in shader "${this._name}"`);
+        return this._uniforms[name];
+    }
+    /**
+     * Use this shader
+     */ use() {
+        _gl.gl.useProgram(this._program);
+    }
+    loadShader(source, shaderType) {
+        let shader = _gl.gl.createShader(shaderType);
+        _gl.gl.shaderSource(shader, source);
+        _gl.gl.compileShader(shader);
+        const error = _gl.gl.getShaderInfoLog(shader);
+        if (error) throw new Error(`Error compiling shader "${this._name}": ${error}`);
+        return shader;
+    }
+    createProgram(vertexShader, fragmentShader) {
+        this._program = _gl.gl.createProgram();
+        _gl.gl.attachShader(this._program, vertexShader);
+        _gl.gl.attachShader(this._program, fragmentShader);
+        _gl.gl.linkProgram(this._program);
+        const error = _gl.gl.getProgramInfoLog(this._program);
+        if (error) throw new Error(`Error linking shader "${this._name}": ${error}`);
+    }
+    detectAtttributes() {
+        const attributeCount = _gl.gl.getProgramParameter(this._program, _gl.gl.ACTIVE_ATTRIBUTES);
+        for(let i = 0; i < attributeCount; i++){
+            const info = _gl.gl.getActiveAttrib(this._program, i);
+            if (!info) break;
+            this._attributes[info.name] = _gl.gl.getAttribLocation(this._program, info.name);
+        }
+    }
+    detectUniforms() {
+        const uniformCount = _gl.gl.getProgramParameter(this._program, _gl.gl.ACTIVE_UNIFORMS);
+        for(let i = 0; i < uniformCount; i++){
+            const info = _gl.gl.getActiveUniform(this._program, i);
+            if (!info) break;
+            this._uniforms[info.name] = _gl.gl.getUniformLocation(this._program, info.name);
+        }
+    }
+}

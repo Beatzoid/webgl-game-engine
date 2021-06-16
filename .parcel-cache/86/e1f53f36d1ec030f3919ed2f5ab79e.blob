@@ -1,0 +1,9 @@
+import   "07544fd4e027d29d04b4eb89c0c76e0a:./core/engine";
+const $07544fd4e027d29d04b4eb89c0c76e0a$var$engine = new $07544fd4e027d29d04b4eb89c0c76e0a$import$278db25bdcdf6087$54d857baca85424();
+// The main entry point for the app
+window.onload = function() {
+    $07544fd4e027d29d04b4eb89c0c76e0a$var$engine.start();
+};
+window.onresize = function() {
+    $07544fd4e027d29d04b4eb89c0c76e0a$var$engine.resize();
+};

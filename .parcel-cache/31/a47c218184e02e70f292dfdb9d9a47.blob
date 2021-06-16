@@ -1,0 +1,67 @@
+import   "3d20467bccd348f842b9732d779816bd:./gl/gl";
+import   "3d20467bccd348f842b9732d779816bd:./gl/glBuffer";
+import   "3d20467bccd348f842b9732d779816bd:./gl/shader";
+class $3d20467bccd348f842b9732d779816bd$export$54d857baca85424 {
+    /**
+     * Creates a new Engine
+     */ constructor(){
+    }
+    /**
+     * Start up the Engine
+     */ start() {
+        this._canvas = $3d20467bccd348f842b9732d779816bd$import$eccd9ae01648d621$b0ad8610f7164882.initialize();
+        $3d20467bccd348f842b9732d779816bd$import$eccd9ae01648d621$9474f141dfdb0e16.clearColor(0, 0, 0, 1);
+        this.loadShaders();
+        this._shader?.use();
+        this.createBuffer();
+        this.resize();
+        this.loop();
+    }
+    /**
+     * Resizes the canvas to fit the window
+     */ resize() {
+        if (this._canvas) {
+            this._canvas.width = window.innerWidth;
+            this._canvas.height = window.innerHeight;
+            $3d20467bccd348f842b9732d779816bd$import$eccd9ae01648d621$9474f141dfdb0e16.viewport(0, 0, this._canvas.width, this._canvas.height);
+        }
+    }
+    loop() {
+        $3d20467bccd348f842b9732d779816bd$import$eccd9ae01648d621$9474f141dfdb0e16.clear($3d20467bccd348f842b9732d779816bd$import$eccd9ae01648d621$9474f141dfdb0e16.COLOR_BUFFER_BIT);
+        // Set uniforms
+        const colorPosition = this._shader?.getUniformLocation("u_color");
+        $3d20467bccd348f842b9732d779816bd$import$eccd9ae01648d621$9474f141dfdb0e16.uniform4f(colorPosition, 1, 0.5, 0, 1);
+        this._buffer?.bind();
+        this._buffer?.draw();
+        requestAnimationFrame(this.loop.bind(this));
+    }
+    createBuffer() {
+        this._buffer = new $3d20467bccd348f842b9732d779816bd$import$6e8156e9883cf80d$27a9faed5bcbf55a(3);
+        const positionAttribute = new $3d20467bccd348f842b9732d779816bd$import$6e8156e9883cf80d$d1752e654c4e05d4();
+        positionAttribute.location = this._shader?.getAttributeLocation("a_position");
+        positionAttribute.offset = 0;
+        positionAttribute.size = 3;
+        this._buffer.addAttributeLocation(positionAttribute);
+        // prettier-ignore
+        const vertices = [
+            //  x  y  z
+            0,
+            0,
+            0,
+            0,
+            0.5,
+            0,
+            0.5,
+            0.5,
+            0
+        ];
+        this._buffer.pushBackData(vertices);
+        this._buffer.upload();
+        this._buffer.unbind();
+    }
+    loadShaders() {
+        const vertexShaderSource = `\n        attribute vec3 a_position;\n\n        void main() {\n            gl_Position = vec4(a_position, 1.0);\n        }`;
+        const fragmentShaderSource = `\n        precision mediump float;\n\n        uniform vec4 u_color;\n\n        void main() {\n            gl_FragColor = u_color;\n        }\n        `;
+        this._shader = new $3d20467bccd348f842b9732d779816bd$import$fffacfb5291b02b0$2b6a748984e845f3("basic", vertexShaderSource, fragmentShaderSource);
+    }
+}

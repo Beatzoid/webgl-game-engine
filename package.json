@@ -2,20 +2,16 @@
     "name": "tsgameengine",
     "version": "1.0.0",
     "description": "",
-    "main": "app.ts",
+    "main": "index.html",
     "scripts": {
-        "start": "parcel serve index.html",
-        "dev": "parcel index.html",
-        "build": "tsc"
+        "dev": "parcel serve index.html",
+        "build": "parcel build index.html"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "devDependencies": {
-        "typescript": "^4.2.2"
-    },
-    "dependencies": {
-        "parcel": "^1.12.4",
-        "parcel-bundler": "^1.12.4"
+        "parcel": "next",
+        "typescript": "^4.3.2"
     }
 }

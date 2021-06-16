@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Typescript Game Engine</title>
+        <script src="99927f3ae95eeecbeda2b623403dd763"></script>
+        <style data-parcel-key="5655ca1780669e9a061bbaf559a39d2d">
+            html,
+            body {
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+            }
+
+            canvas {
+                width: 100%;
+                height: 100%;
+            }
+        </style>
+    </head>
+    <body></body>
+</html>

@@ -7,7 +7,7 @@
         "**/.DS_Store": true,
         "node_modules": true,
         "dist": true,
-        ".cache": true,
+        ".parcel-cache": true,
         ".yarn": true
     }
 }
