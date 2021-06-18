@@ -14,15 +14,18 @@ jobs:
 
         strategy:
             matrix:
-                node-version: [14.x, 15.x]
+                node-version: [14.x, 15.x, 16.x]
                 os: [ubuntu-latest, windows-latest, macOS-latest]
+                architecture: [x64, x86]
 
+        name: Node ${{ matrix.node-version }} - ${{matrix.architecture}} on ${{ matrix.os }}
         steps:
-            - uses: actions/checkout@v1
+            - uses: actions/checkout@latest
             - name: Install Node
-              uses: actions/setup-node@v1
+              uses: actions/setup-node@latest
               with:
                   node-version: ${{ matrix.node-version }}
+                  architecture: ${{ matrix.architecture }}
 
             - name: Install Dependencies
               run: yarn install
