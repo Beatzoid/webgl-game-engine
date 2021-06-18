@@ -1,92 +1,97 @@
-﻿import { gl, GLUtilities } from "./gl/gl";
-import { AttributeInfo, GlBuffer } from "./gl/glBuffer";
-import { Shader } from "./gl/shader";
+﻿namespace TSE {
+    export class Engine {
+        private _canvas: HTMLCanvasElement | undefined;
+        private _shader: Shader | undefined;
+        private _projection: Matrix4x4 | undefined;
 
-export class Engine {
-    private _canvas: HTMLCanvasElement | undefined;
-    private _shader: Shader | undefined;
+        private _sprite: Sprite | undefined;
 
-    private _buffer: GlBuffer | undefined;
+        /**
+         * Creates a new Engine
+         */
+        public constructor() {}
 
-    /**
-     * Creates a new Engine
-     */
-    public constructor() {}
+        /**
+         * Start up the Engine
+         */
+        public start(): void {
+            this._canvas = GLUtilities.initialize();
+            gl.clearColor(0, 0, 0, 1);
 
-    /**
-     * Start up the Engine
-     */
-    public start(): void {
-        this._canvas = GLUtilities.initialize();
-        gl.clearColor(0, 0, 0, 1);
+            this.loadShaders();
+            this._shader?.use();
 
-        this.loadShaders();
-        this._shader?.use();
+            this._projection = Matrix4x4.orthographic(
+                0,
+                this._canvas.width,
+                0,
+                this._canvas.height,
+                -100,
+                100
+            );
 
-        this.createBuffer();
+            this._sprite = new Sprite("Test");
+            this._sprite.load();
 
-        this.resize();
-        this.loop();
-    }
+            this._sprite.position.x = 200;
 
-    /**
-     * Resizes the canvas to fit the window
-     */
-    public resize(): void {
-        if (this._canvas) {
-            this._canvas.width = window.innerWidth;
-            this._canvas.height = window.innerHeight;
-
-            gl.viewport(0, 0, this._canvas.width, this._canvas.height);
+            this.resize();
+            this.loop();
         }
-    }
 
-    private loop(): void {
-        gl.clear(gl.COLOR_BUFFER_BIT);
+        /**
+         * Resizes the canvas to fit the window
+         */
+        public resize(): void {
+            if (this._canvas) {
+                this._canvas.width = window.innerWidth;
+                this._canvas.height = window.innerHeight;
 
-        // Set uniforms
-        const colorPosition = this._shader?.getUniformLocation("u_color")!!;
-        gl.uniform4f(colorPosition, 1, 0.5, 0, 1);
+                gl.viewport(-1, 1, -1, -1);
+            }
+        }
 
-        this._buffer?.bind();
-        this._buffer?.draw();
+        private loop(): void {
+            gl.clear(gl.COLOR_BUFFER_BIT);
 
-        requestAnimationFrame(this.loop.bind(this));
-    }
+            // Set uniforms
+            const colorPosition = this._shader?.getUniformLocation("u_color")!!;
+            gl.uniform4f(colorPosition, 1, 0.5, 0, 1);
 
-    private createBuffer(): void {
-        this._buffer = new GlBuffer(3);
+            const projectionPosition =
+                this._shader?.getUniformLocation("u_projection");
+            gl.uniformMatrix4fv(
+                projectionPosition!,
+                false,
+                new Float32Array(this._projection?.data!)
+            );
 
-        const positionAttribute = new AttributeInfo();
-        positionAttribute.location = this._shader?.getAttributeLocation(
-            "a_position"
-        )!!;
-        positionAttribute.offset = 0;
-        positionAttribute.size = 3;
-        this._buffer.addAttributeLocation(positionAttribute);
+            let modelLocation = this._shader?.getUniformLocation("u_model")!;
+            gl.uniformMatrix4fv(
+                modelLocation,
+                false,
+                new Float32Array(
+                    Matrix4x4.translation(this._sprite?.position!).data
+                )
+            );
 
-        // prettier-ignore
-        const vertices = [
-        //  x  y  z
-            0, 0, 0,
-            0, 0.5, 0,
-            0.5, 0.5, 0
-        ];
+            this._sprite?.draw();
 
-        this._buffer.pushBackData(vertices);
-        this._buffer.upload();
-        this._buffer.unbind();
-    }
+            requestAnimationFrame(this.loop.bind(this));
+        }
 
-    private loadShaders(): void {
-        const vertexShaderSource = `
+        private loadShaders(): void {
+            const vertexShaderSource = `
         attribute vec3 a_position;
 
+        uniform mat4 u_projection;
+        uniform mat4 u_model;
+
         void main() {
-            gl_Position = vec4(a_position, 1.0);
+            gl_Position = u_projection * u_model * vec4(a_position, 1.0);
         }`;
 
-        const fragmentShaderSource = `
+            const fragmentShaderSource = `
         precision mediump float;
 
         uniform vec4 u_color;
@@ -96,10 +101,11 @@ export class Engine {
         }
         `;
 
-        this._shader = new Shader(
-            "basic",
-            vertexShaderSource,
-            fragmentShaderSource
-        );
+            this._shader = new Shader(
+                "basic",
+                vertexShaderSource,
+                fragmentShaderSource
+            );
+        }
     }
 }

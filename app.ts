@@ -1,9 +1,8 @@
-﻿import { Engine } from "./core/engine";
-
-const engine: Engine = new Engine();
+﻿let engine: TSE.Engine;
 
 // The main entry point for the app
 window.onload = function () {
+    engine = new TSE.Engine();
     engine.start();
 };
 
