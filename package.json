@@ -2,7 +2,7 @@
     "name": "tsgameengine",
     "version": "1.0.0",
     "description": "",
-    "main": "build.html",
+    "main": "index.html",
     "scripts": {
         "dev": "tsc -w",
         "build": "tsc"
