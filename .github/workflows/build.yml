@@ -20,9 +20,9 @@ jobs:
 
         name: Node ${{ matrix.node-version }} - ${{matrix.architecture}} on ${{ matrix.os }}
         steps:
-            - uses: actions/checkout@latest
+            - uses: actions/checkout@v2
             - name: Install Node
-              uses: actions/setup-node@latest
+              uses: actions/setup-node@v2
               with:
                   node-version: ${{ matrix.node-version }}
                   architecture: ${{ matrix.architecture }}
