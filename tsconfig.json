@@ -1,17 +1,17 @@
 {
     "compilerOptions": {
         "target": "es5",
-        "module": "esnext",
+        "module": "amd",
+        "removeComments": true,
         "outDir": "dist",
         "lib": ["ESNext", "DOM"],
-        "sourceMap": true,
+        "inlineSourceMap": true,
         "strict": true,
+        "outFile": "./dist/TSE.js",
         "moduleResolution": "node",
-        "paths": {
-            "~/*": ["./*"]
-        },
         "allowSyntheticDefaultImports": true,
-        "esModuleInterop": true
+        "esModuleInterop": true,
+        "declaration": true
     },
     "include": ["**/*.ts"]
 }

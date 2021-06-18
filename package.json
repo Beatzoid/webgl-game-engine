@@ -2,16 +2,15 @@
     "name": "tsgameengine",
     "version": "1.0.0",
     "description": "",
-    "main": "index.html",
+    "main": "build.html",
     "scripts": {
-        "dev": "parcel serve index.html",
-        "build": "parcel build index.html"
+        "dev": "tsc -w",
+        "build": "tsc"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "devDependencies": {
-        "parcel": "next",
         "typescript": "^4.3.2"
     }
 }
