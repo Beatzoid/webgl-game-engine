@@ -1,0 +1,15 @@
+{
+    "extends": ["config:base"],
+    "labels": ["dependencies"],
+    "commitMessagePrefix": "⬆",
+    "rangeStrategy": "bump",
+    "packageRules": [
+        {
+            "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+            "automerge": true
+        }
+    ],
+    "prConcurrentLimit": 0,
+    "prHourlyLimit": 0,
+    "dependencyDashboard": true
+}
