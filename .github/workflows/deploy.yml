@@ -27,7 +27,7 @@ jobs:
               run: yarn build
 
             - name: Create build directory
-            - run: mkdir build && cp -r dist build && cp index.html build
+              run: mkdir build && cp -r dist build && cp index.html build
 
             # Deploy to local repo
             - name: Deploy
