@@ -4,12 +4,13 @@
         "**/.svn": true,
         "**/.hg": true,
         "**/CVS": true,
-        "**/.DS_Store": true
+        "**/.DS_Store": true,
+        "**/node_modules": true,
+        "**/.yarn": true,
+        "**/yarn.lock": true,
+        "**/dist": true
     },
     "search.exclude": {
-        "**/.yarn": true,
-        "**/.pnp.*": true
-    },
-    "typescript.tsdk": ".yarn/sdks/typescript/lib",
-    "typescript.enablePromptUseWorkspaceTsdk": true
+        "**/.yarn": true
+    }
 }

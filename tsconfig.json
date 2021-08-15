@@ -7,7 +7,6 @@
         "lib": ["ESNext", "DOM"],
         "inlineSourceMap": true,
         "strict": true,
-        "outFile": "./dist/TSE.js",
         "moduleResolution": "node",
         "allowSyntheticDefaultImports": true,
         "esModuleInterop": true,
