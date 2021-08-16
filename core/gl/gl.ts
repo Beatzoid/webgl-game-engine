@@ -9,7 +9,21 @@ export let gl: WebGL2RenderingContext;
 export class GLUtilities {
     /**
      * Initializes WebGL, optionally using the canvas element id provided
+     *
      * @param elementId The Id of the canvas element
+     *
+     * @example
+     * // Tries to find a canvas element with the id "canvas"
+     * // Throws an error if it can't find ut
+     * GLUtilities.initialize("canvas");
+     *
+     * @example
+     * // Creates a new canvas element
+     * GLUtilities.initialize();
+     *
+     * @returns The canvas element
+     *
+     * @throws an error is The canvas cannot be found or WebGL is unable to initalize
      */
     public static initialize(elementId?: string): HTMLCanvasElement {
         let canvas: HTMLCanvasElement;

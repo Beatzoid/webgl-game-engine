@@ -19,7 +19,11 @@ export class AssetManager {
 
     /**
      * Register a loader for an asset type
+     *
      * @param loader The loader to register
+     *
+     * @example
+     * AssetManager.registerLoader(new ImageAssetLoader());
      */
     public static registerLoader(loader: IAssetLoader): void {
         this._loaders.push(loader);
@@ -27,7 +31,11 @@ export class AssetManager {
 
     /**
      * Called when an asset is loaded
+     *
      * @param asset The asset that loaded
+     *
+     * @example
+     * AssetManager.onAssetLoaded(asset);
      */
     public static onAssetLoaded(asset: IAsset): void {
         AssetManager._loadedAssets[asset.name] = asset;
@@ -40,7 +48,11 @@ export class AssetManager {
 
     /**
      * Load an asset
+     *
      * @param name The name of the asset to load
+     *
+     * @example
+     * AssetManager.loadAsset("player");
      */
     public static loadAsset(name: string): void {
         const extension = name.split(".").pop()?.toLowerCase();
@@ -62,7 +74,13 @@ export class AssetManager {
 
     /**
      * Check if an asset is loaded
+     *
      * @param name The name of the asset to check
+     *
+     * @example
+     * AssetManager.isAssetLoaded("player");
+     *
+     * @returns true if the asset is loaded, false otherwise
      */
     public static isAssetLoaded(name: string): boolean {
         return AssetManager._loadedAssets[name] !== undefined;
@@ -70,7 +88,11 @@ export class AssetManager {
 
     /**
      * Get an asset
+     *
      * @param name The name of the asset to get
+     *
+     * @example
+     * AssetManager.getAsset("player");
      *
      * @returns The asset if it exists, otherwise it tries to load the asset and returns undefined
      */

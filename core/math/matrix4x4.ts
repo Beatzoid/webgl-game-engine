@@ -13,24 +13,28 @@ export class Matrix4x4 {
             ];
     }
 
-    /** Returns the data contained in this matrix as an array of numbers */
     public get data(): number[] {
         return this._data;
     }
 
-    /** Returns a new identity matrix */
     public static identity(): Matrix4x4 {
         return new Matrix4x4();
     }
 
     /**
      * Creates and returns a new orthographic projection matrix.
+     *
      * @param left The left extents of the viewport.
      * @param right The right extents of the viewport.
      * @param bottom The bottom extents of the viewport.
      * @param top The top extents of the viewport.
      * @param nearClip The near clipping plane.
      * @param farClip The far clipping plane.
+     *
+     * @example
+     * Matrix4x4.orthographic(0, 1280, 0, 720, -100, 100);
+     *
+     * @returns The new orthographic projection matrix
      */
     public static orthographic(
         left: number,
@@ -65,7 +69,13 @@ export class Matrix4x4 {
 
     /**
      * Creates a transformation matrix using the provided position.
+     *
      * @param position The position to be used in transformation.
+     *
+     * @example
+     * Matrix4x4.translation(new Vector3())
+     *
+     * @returns The new translation matrix
      */
     public static translation(position: Vector3): Matrix4x4 {
         const m = new Matrix4x4();

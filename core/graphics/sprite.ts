@@ -11,12 +11,32 @@ export class Sprite {
     /** The position of the sprite */
     public position: Vector3 = new Vector3();
 
+    /**
+     * Create a new sprite
+     *
+     * @param name The name of the sprite
+     * @param width The width of the sprite
+     * @param height The height of the sprite
+     *
+     * @example
+     * const sprite = new Sprite("example", 100, 100);
+     *
+     * @example
+     * // If no width/height are specified, then they default to 100x100
+     * const sprite = new Sprite("example"); // Width=100, Height=100
+     */
     public constructor(name: string, width = 100, height = 100) {
         this._name = name;
         this._width = width;
         this._height = height;
     }
 
+    /**
+     * Load the sprite
+     *
+     * @example
+     * Sprite.load();
+     */
     public load(): void {
         this._buffer = new GlBuffer(3);
 
@@ -45,6 +65,12 @@ export class Sprite {
 
     public update(): void {}
 
+    /**
+     * Draw the sprite
+     *
+     * @example
+     * Sprite.draw();
+     */
     public draw(): void {
         this._buffer?.bind();
         this._buffer?.draw();

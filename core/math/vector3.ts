@@ -30,12 +30,27 @@ export class Vector3 {
         this._z = value;
     }
 
-    /** Returns the Vector3 data as an array */
+    /**
+     * Returns the Vector3 data as an array
+     *
+     * @example
+     * new Vector3(1, 2, 3).toArray();
+     *
+     * @returns the Vector3 data as an array
+     *
+     */
     public toArray(): number[] {
         return [this._x, this._y, this._z];
     }
 
-    /** Returns the Vector3 data as a Float32 array */
+    /**
+     * Returns the Vector3 data as a Float32Array
+     *
+     * @example
+     * new Vector3(1, 2, 3).toFloat32Array();
+     *
+     * @returns the Vector3 data as a Float32Array
+     */
     public toFloat32Array(): Float32Array {
         return new Float32Array(this.toArray());
     }

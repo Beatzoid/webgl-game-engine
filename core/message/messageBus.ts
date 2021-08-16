@@ -12,8 +12,12 @@ export class MessageBus {
 
     /**
      * Add a subscrition to the specified message code
+     *
      * @param code The code to subcribe to
      * @param handler The handler for the message
+     *
+     * @example
+     * MessageBus.addSubscription("EXAMPLE_CODE", handler);
      */
     public static addSubscription(code: string, handler: IMessageHandler) {
         if (MessageBus._subscriptions[code] !== undefined) {
@@ -32,8 +36,12 @@ export class MessageBus {
 
     /**
      * Remove a subscrition from the specified message code
+     *
      * @param code The code to subcribe to
      * @param handler The handler for the message
+     *
+     * @example
+     * MessageBus.removeSubscription("EXAMPLE_CODE", handler);
      */
     public static removeSubscription(code: string, handler: IMessageHandler) {
         if (MessageBus._subscriptions[code] === undefined) {
@@ -53,7 +61,13 @@ export class MessageBus {
 
     /**
      * Post a message
+     *
      * @param message The message to post
+     *
+     * @example
+     * MessageBus.post(
+     *       new Message(code, sender, context, MessagePriority.NORMAL)
+     *   );
      */
     public static post(message: Message) {
         console.log(`Message posted: ${message}`);
@@ -74,6 +88,9 @@ export class MessageBus {
 
     /**
      * Update loop
+     *
+     * @example
+     * MessageBus.update();
      */
     public static update() {
         if (MessageBus._normalMessageQueue.length === 0) return;

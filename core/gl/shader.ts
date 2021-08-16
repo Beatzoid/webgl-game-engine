@@ -11,9 +11,17 @@ export class Shader {
 
     /**
      * Creates a new shader
+     *
      * @param name The name of the shader
      * @param vertexSource The source of the vertex shader
      * @param fragmentSource The source of the fragment shader
+     *
+     * @example
+     *  new Shader(
+     *       "example",
+     *       vertexShaderSource,
+     *       fragmentShaderSource
+     *   );
      */
     public constructor(
         name: string,
@@ -33,16 +41,21 @@ export class Shader {
         this.detectUniforms();
     }
 
-    /**
-     * The name of the shader
-     */
     public get name(): string {
         return this._name;
     }
 
     /**
      * Gets the location of an attribute with the specified name
+     *
      * @param name The name of the attribute
+     *
+     * @example
+     * Shader.getAttributeLocation("position");
+     *
+     * @returns The location of the attribute
+     *
+     * @throws an error if it can't find the attribute in the shader
      */
     public getAttributeLocation(name: string): number {
         if (this._attributes[name] === undefined)
@@ -55,7 +68,15 @@ export class Shader {
 
     /**
      * Gets the location of an uniform with the specified name
+     *
      * @param name The name of the uniform
+     *
+     * @example
+     * Shader.getUniformLocation("u_color");
+     *
+     * @returns The location of the uniform
+     *
+     * @throws an error if it can't find the uniform in the shader
      */
     public getUniformLocation(name: string): WebGLUniformLocation {
         if (this._uniforms[name] === undefined)
@@ -68,6 +89,9 @@ export class Shader {
 
     /**
      * Use this shader
+     *
+     * @example
+     * Shader.use();
      */
     public use(): void {
         gl.useProgram(this._program!!);

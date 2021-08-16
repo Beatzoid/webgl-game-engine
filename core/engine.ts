@@ -13,11 +13,17 @@ export class Engine {
 
     /**
      * Creates a new Engine
+     *
+     * @example
+     * const engine = new Engine();
      */
     public constructor() {}
 
     /**
      * Start up the Engine
+     *
+     * @example
+     * engine.start();
      */
     public start(): void {
         this._canvas = GLUtilities.initialize();
@@ -46,6 +52,9 @@ export class Engine {
 
     /**
      * Resizes the canvas to fit the window
+     *
+     * @example
+     * engine.resize();
      */
     public resize(): void {
         if (this._canvas) {

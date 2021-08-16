@@ -4,6 +4,7 @@ export interface IAssetLoader {
 
     /**
      * Load an asset
+     *
      * @param assetName The name of the asset to load
      */
     loadAsset(assetName: string): void;

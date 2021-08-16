@@ -4,19 +4,13 @@ import { gl } from "./gl";
  * Represents the information needed for a GLBuffer attribute.
  */
 export class AttributeInfo {
-    /**
-     *  The location of the attribute.
-     */
+    /** The location of the attribute */
     public location: number | undefined;
 
-    /**
-     * The size (number of elements) in the attribute (i.e Vector3 = 3).
-     */
+    /** The size (number of elements) in the attribute (ex. Vector3 = 3)*/
     public size: number | undefined;
 
-    /**
-     * The number of elements from the beginning of the Buffer
-     */
+    /** The number of elements from the beginning of the Buffer*/
     public offset: number | undefined;
 }
 
@@ -39,10 +33,14 @@ export class GlBuffer {
 
     /**
      * Creates a new Gl Buffer
+     *
      * @param elementSize The size of each element in the buffer
      * @param dataType The data type of the buffer. Default: `gl.FLOAT`
      * @param targetBufferType The buffer target type. Can be either `gl.ARRAY_BUFFER` or `gl.ELEMENT_ARRAY_BUFFER`. Default: `gl.ARRAY_BUFFER`
      * @param mode The drawing mode of this buffer. (i.e. `gl.TRIANGLES` or `gl.LINES`). Defaukt: `gl.TRIANGLES`
+     *
+     * @example
+     * const buffer = new GlBuffer(3);
      */
     public constructor(
         elementSize: number,
@@ -83,6 +81,9 @@ export class GlBuffer {
 
     /**
      * Destroy the Buffer
+     *
+     * @example
+     * GLBuffer.destroy();
      */
     public destroy(): void {
         gl.deleteBuffer(this._buffer);
@@ -90,7 +91,11 @@ export class GlBuffer {
 
     /**
      * Bind the Buffer
-     * @param noramlized Indicates if the data should be normalized. Default: `false`
+     *
+     * @param noramlized Indicates if the data should be normalized
+     *
+     * @example
+     * GLBuffer.bind(); // Normalized defaults to false
      */
     public bind(noramlized = false): void {
         gl.bindBuffer(this._targetBufferType, this._buffer);
@@ -112,6 +117,9 @@ export class GlBuffer {
 
     /**
      * Unbind the Buffer
+     *
+     * @example
+     * GLBuffer.unbind();
      */
     public unbind(): void {
         for (const it of this._attributes) {
@@ -122,7 +130,12 @@ export class GlBuffer {
 
     /**
      * Adds an attribute with the provided information to the Buffer
+     *
      * @param info The information to add
+     *
+     * @example
+     * GLBuffer.addAttributeLocation(new AttributeInfo)));
+     *
      */
     public addAttributeLocation(info: AttributeInfo): void {
         this._hasAttributeLocation = true;
@@ -131,7 +144,11 @@ export class GlBuffer {
 
     /**
      * Add data to the Buffer
+     *
      * @param data The data to add
+     *
+     * @example
+     * GLBuffer.pushBackData(verticies);
      */
     public pushBackData(data: number[]): void {
         for (const d of data) {
@@ -141,6 +158,9 @@ export class GlBuffer {
 
     /**
      * Upload the Buffer data to the GPU
+     *
+     * @example
+     * GLBuffer.upload();
      */
     public upload(): void {
         gl.bindBuffer(gl.ARRAY_BUFFER, this._buffer);
@@ -181,6 +201,9 @@ export class GlBuffer {
 
     /**
      * Draw the Buffer
+     *
+     * @example
+     * GLBuffer.draw();
      */
     public draw(): void {
         if (this._targetBufferType === gl.ARRAY_BUFFER) {
