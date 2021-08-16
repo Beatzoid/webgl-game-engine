@@ -48,7 +48,7 @@ export class Message {
      * @param sender The sender of the message
      * @param context The context of the message
      */
-    public static sendPriority(code: string, sender: any, context?: any) {
+    public static sendPriority(code: string, sender: any, context?: any): void {
         MessageBus.post(
             new Message(code, sender, context, MessagePriority.HIGH)
         );
@@ -59,7 +59,7 @@ export class Message {
      * @param code The code to subscribe to
      * @param handler The handler for the code
      */
-    public static subscribe(code: string, handler: IMessageHandler) {
+    public static subscribe(code: string, handler: IMessageHandler): void {
         MessageBus.addSubscription(code, handler);
     }
 
@@ -68,7 +68,7 @@ export class Message {
      * @param code The code to unsubscribe from
      * @param handler The handler for the code
      */
-    public static unsubscribe(code: string, handler: IMessageHandler) {
+    public static unsubscribe(code: string, handler: IMessageHandler): void {
         MessageBus.removeSubscription(code, handler);
     }
 }

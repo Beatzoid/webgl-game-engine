@@ -2,6 +2,7 @@
 import { Shader } from "./gl/shader";
 import { Sprite } from "./graphics/sprite";
 import { Matrix4x4 } from "./math/matrix4x4";
+import { Vector3 } from "./math/vector3";
 
 export class Engine {
     private _canvas: HTMLCanvasElement | undefined;
@@ -59,7 +60,8 @@ export class Engine {
         gl.clear(gl.COLOR_BUFFER_BIT);
 
         // Set uniforms
-        const colorPosition = this._shader?.getUniformLocation("u_color")!!;
+        const colorPosition =
+            this._shader?.getUniformLocation("u_color") ?? null;
         gl.uniform4f(colorPosition, 1, 0.5, 0, 1);
 
         const projectionPosition =
@@ -67,15 +69,18 @@ export class Engine {
         gl.uniformMatrix4fv(
             projectionPosition!,
             false,
-            new Float32Array(this._projection?.data!)
+            new Float32Array(this._projection?.data ?? [])
         );
 
-        let modelLocation = this._shader?.getUniformLocation("u_model")!;
+        const modelLocation =
+            this._shader?.getUniformLocation("u_model") ?? null;
         gl.uniformMatrix4fv(
             modelLocation,
             false,
             new Float32Array(
-                Matrix4x4.translation(this._sprite?.position!).data
+                Matrix4x4.translation(
+                    this._sprite?.position ?? new Vector3()
+                ).data
             )
         );
 

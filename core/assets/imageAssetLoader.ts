@@ -25,7 +25,7 @@ export class ImageAssetLoader implements IAssetLoader {
         return ["png", "gif", "jpg"];
     }
 
-    public loadAsset(assetName: string) {
+    public loadAsset(assetName: string): void {
         const image: HTMLImageElement = new Image();
         image.onload = this.onImageLoaded.bind(this, assetName, image);
         image.src = assetName;

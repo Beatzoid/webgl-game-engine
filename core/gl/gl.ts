@@ -21,7 +21,7 @@ export class GLUtilities {
                     `Cannot find a canvas element with the id "${elementId}"`
                 );
         } else {
-            canvas = document.createElement("canvas") as HTMLCanvasElement;
+            canvas = document.createElement("canvas");
             document.body.appendChild(canvas);
         }
 

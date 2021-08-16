@@ -11,11 +11,7 @@ export class Sprite {
     /** The position of the sprite */
     public position: Vector3 = new Vector3();
 
-    public constructor(
-        name: string,
-        width: number = 100,
-        height: number = 100
-    ) {
+    public constructor(name: string, width = 100, height = 100) {
         this._name = name;
         this._width = width;
         this._height = height;
@@ -47,7 +43,7 @@ export class Sprite {
         this._buffer.unbind();
     }
 
-    public update(time: number): void {}
+    public update(): void {}
 
     public draw(): void {
         this._buffer?.bind();

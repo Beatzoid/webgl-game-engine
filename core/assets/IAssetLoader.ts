@@ -1,5 +1,3 @@
-import { IAsset } from "./IAsset";
-
 export interface IAssetLoader {
     /* FIle extensions supported by this asset loader */
     readonly supportedFileExtensions: string[];

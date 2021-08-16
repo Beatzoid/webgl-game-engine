@@ -74,7 +74,7 @@ export class Shader {
     }
 
     private loadShader(source: string, shaderType: number): WebGLShader {
-        let shader: WebGLShader = gl.createShader(shaderType) as WebGLShader;
+        const shader: WebGLShader = gl.createShader(shaderType) as WebGLShader;
 
         gl.shaderSource(shader, source);
         gl.compileShader(shader);

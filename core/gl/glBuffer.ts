@@ -24,10 +24,10 @@ export class AttributeInfo {
  * Represents a WebGL Buffer
  */
 export class GlBuffer {
-    private _hasAttributeLocation: boolean = false;
+    private _hasAttributeLocation = false;
     private _elementSize: number;
     private _stride: number;
-    private _buffer: WebGLBuffer;
+    private _buffer: WebGLBuffer | null;
 
     private _targetBufferType: number;
     private _dataType: number;
@@ -78,7 +78,7 @@ export class GlBuffer {
         }
 
         this._stride = this._elementSize * this._typeSize;
-        this._buffer = gl.createBuffer()!!;
+        this._buffer = gl.createBuffer();
     }
 
     /**
@@ -92,11 +92,11 @@ export class GlBuffer {
      * Bind the Buffer
      * @param noramlized Indicates if the data should be normalized. Default: `false`
      */
-    public bind(noramlized: boolean = false): void {
+    public bind(noramlized = false): void {
         gl.bindBuffer(this._targetBufferType, this._buffer);
 
         if (this._hasAttributeLocation) {
-            for (let it of this._attributes) {
+            for (const it of this._attributes) {
                 gl.vertexAttribPointer(
                     it.location!!,
                     it.size!!,
@@ -114,7 +114,7 @@ export class GlBuffer {
      * Unbind the Buffer
      */
     public unbind(): void {
-        for (let it of this._attributes) {
+        for (const it of this._attributes) {
             gl.disableVertexAttribArray(it.location!!);
         }
         gl.bindBuffer(gl.ARRAY_BUFFER, this._buffer);

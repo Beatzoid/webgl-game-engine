@@ -74,9 +74,8 @@ export class MessageBus {
 
     /**
      * Update loop
-     * @param time The time
      */
-    public static update(time: number) {
+    public static update() {
         if (MessageBus._normalMessageQueue.length === 0) return;
 
         const messageLimit = Math.min(

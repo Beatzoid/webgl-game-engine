@@ -3,7 +3,7 @@ export class Vector3 {
     private _y: number;
     private _z: number;
 
-    public constructor(x: number = 0, y: number = 0, z: number = 0) {
+    public constructor(x = 0, y = 0, z = 0) {
         this._x = x;
         this._y = y;
         this._z = z;
