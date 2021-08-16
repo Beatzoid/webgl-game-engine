@@ -5,9 +5,9 @@ __metadata:
   version: 4
   cacheKey: 8
 
-"tsgameengine@workspace:.":
+"beat-webgl@workspace:.":
   version: 0.0.0-use.local
-  resolution: "tsgameengine@workspace:."
+  resolution: "beat-webgl@workspace:."
   dependencies:
     typescript: ^4.3.5
   languageName: unknown

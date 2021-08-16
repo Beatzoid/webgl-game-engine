@@ -1,11 +1,13 @@
 {
-    "name": "tsgameengine",
+    "name": "beat-webgl",
     "version": "1.0.0",
-    "description": "",
-    "main": "index.html",
+    "description": "A game engine made using Typescript",
+    "main": "dist/app.js",
+    "types": "dist/index.d.ts",
     "scripts": {
         "dev": "tsc -w",
-        "build": "tsc"
+        "build": "tsc",
+        "prepublish": "tsc"
     },
     "keywords": [],
     "author": "",

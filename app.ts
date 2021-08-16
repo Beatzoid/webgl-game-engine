@@ -1,8 +1,10 @@
-﻿let engine: TSE.Engine;
+﻿import { Engine } from "./core/engine";
+
+let engine: Engine;
 
 // The main entry point for the app
 window.onload = function () {
-    engine = new TSE.Engine();
+    engine = new Engine();
     engine.start();
 };
 
