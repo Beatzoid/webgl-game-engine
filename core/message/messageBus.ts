@@ -20,7 +20,7 @@ export class MessageBus {
      * MessageBus.addSubscription("EXAMPLE_CODE", handler);
      */
     public static addSubscription(code: string, handler: IMessageHandler) {
-        if (MessageBus._subscriptions[code] !== undefined) {
+        if (MessageBus._subscriptions[code] === undefined) {
             MessageBus._subscriptions[code] = [];
         }
 
