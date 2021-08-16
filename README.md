@@ -7,11 +7,11 @@ A WebGL Game Engine made using Typescript
 1. Download/Clone project
 2. `yarn install`
 3. `yarn dev`
-4. Open `index.html` in your browser
+4. Open `public/index.html` in your browser
 
 # Demo
 
-Soon
+[Here](https://webgl-game-engine.vercel.app/)
 
 # Credit
 
