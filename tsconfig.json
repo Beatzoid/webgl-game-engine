@@ -1,9 +1,9 @@
 {
     "compilerOptions": {
-        "target": "ESNext",
-        "module": "CommonJS",
-        "outDir": "dist",
+        "target": "es2015",
+        "module": "es2015",
         "lib": ["ESNext", "DOM"],
+        "outDir": "public/dist",
         "inlineSourceMap": true,
         "strict": true,
         "moduleResolution": "node",
