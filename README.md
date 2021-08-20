@@ -6,8 +6,9 @@ A WebGL Game Engine made using Typescript
 
 1. Download/Clone project
 2. `yarn install`
-3. `yarn dev`
-4. Open `public/index.html` in your browser
+3. `yarn watch`
+4. In a new terminal run `yarn http`
+5. Open the link show in the terminal in your browser
 
 # Demo
 

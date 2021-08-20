@@ -1,10 +1,10 @@
 {
     "compilerOptions": {
         "target": "es5",
-        "module": "commonjs",
-        "lib": ["es5", "es6", "dom"],
+        "module": "CommonJS",
+        "lib": ["dom", "ES5", "ES6"],
         "outDir": "./public/dist",
-        "inlineSourceMap": true,
+        "sourceMap": true,
         "strict": true,
         "moduleResolution": "node",
         "allowSyntheticDefaultImports": true,
@@ -12,5 +12,6 @@
         "declaration": true
     },
 
-    "include": ["**/*.ts"]
+    "include": ["**/*.ts"],
+    "exclude": ["node_modules", "./public/dist"]
 }
