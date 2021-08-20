@@ -1,8 +1,10 @@
-﻿import { GLUtilities, gl } from "./gl/gl";
+﻿import { AssetManager } from "./assets/assetManager";
+import { GLUtilities, gl } from "./gl/gl";
 import { Shader } from "./gl/shader";
 import { Sprite } from "./graphics/sprite";
 import { Matrix4x4 } from "./math/matrix4x4";
 import { Vector3 } from "./math/vector3";
+import { MessageBus } from "./message/messageBus";
 
 export class Engine {
     private _canvas: HTMLCanvasElement | undefined;
@@ -29,6 +31,8 @@ export class Engine {
         this._canvas = GLUtilities.initialize();
         gl.clearColor(0, 0, 0, 1);
 
+        AssetManager.initialize();
+
         this.loadShaders();
         this._shader?.use();
 
@@ -41,7 +45,7 @@ export class Engine {
             100
         );
 
-        this._sprite = new Sprite("Test");
+        this._sprite = new Sprite("Test", "assets/textures/crate.jpg");
         this._sprite.load();
 
         this._sprite.position.x = 200;
@@ -66,12 +70,15 @@ export class Engine {
     }
 
     private loop(): void {
+        MessageBus.update();
+
         gl.clear(gl.COLOR_BUFFER_BIT);
 
         // Set uniforms
         const colorPosition =
-            this._shader?.getUniformLocation("u_color") ?? null;
-        gl.uniform4f(colorPosition, 1, 0.5, 0, 1);
+            this._shader?.getUniformLocation("u_tint") ?? null;
+        // gl.uniform4f(colorPosition, 1, 0.5, 0, 1);
+        gl.uniform4f(colorPosition, 1, 1, 1, 1);
 
         const projectionPosition =
             this._shader?.getUniformLocation("u_projection");
@@ -93,7 +100,7 @@ export class Engine {
             )
         );
 
-        this._sprite?.draw();
+        this._sprite?.draw(this._shader!);
 
         requestAnimationFrame(this.loop.bind(this));
     }
@@ -101,21 +108,28 @@ export class Engine {
     private loadShaders(): void {
         const vertexShaderSource = `
         attribute vec3 a_position;
+        attribute vec2 a_texCoord;
 
         uniform mat4 u_projection;
         uniform mat4 u_model;
 
+        varying vec2 v_texCoord;
+
         void main() {
             gl_Position = u_projection * u_model * vec4(a_position, 1.0);
+            v_texCoord = a_texCoord;
         }`;
 
         const fragmentShaderSource = `
         precision mediump float;
+        
+        uniform vec4 u_tint;
+        uniform sampler2D u_diffuse;
 
-        uniform vec4 u_color;
+        varying vec2 v_texCoord;
 
         void main() {
-            gl_FragColor = u_color;
+            gl_FragColor = u_tint * texture2D(u_diffuse, v_texCoord);
         }
         `;
 

@@ -102,9 +102,11 @@ export class Shader {
 
         gl.shaderSource(shader, source);
         gl.compileShader(shader);
-        const error = gl.getShaderInfoLog(shader);
-        if (error)
-            throw new Error(`Error compiling shader "${this._name}": ${error}`);
+
+        if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+            const info = gl.getShaderInfoLog(shader);
+            throw new Error(`Error compiling shader '${this._name}' : ${info}`);
+        }
 
         return shader;
     }
@@ -120,9 +122,12 @@ export class Shader {
 
         gl.linkProgram(this._program);
 
-        const error = gl.getProgramInfoLog(this._program);
-        if (error)
-            throw new Error(`Error linking shader "${this._name}": ${error}`);
+        if (!gl.getProgramParameter(this._program, gl.LINK_STATUS)) {
+            const info = gl.getProgramInfoLog(this._program);
+            throw new Error(
+                `Could not compile WebGL program ${this._name} : ${info}`
+            );
+        }
     }
 
     private detectAtttributes(): void {

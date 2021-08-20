@@ -70,7 +70,7 @@ export class MessageBus {
      *   );
      */
     public static post(message: Message) {
-        console.log(`Message posted: ${message}`);
+        console.log("Message posted: ", message);
 
         const handlers = MessageBus._subscriptions[message.code];
         if (!handlers) return;

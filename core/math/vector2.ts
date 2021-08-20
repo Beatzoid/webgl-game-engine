@@ -1,22 +1,19 @@
-export class Vector3 {
+export class Vector2 {
     private _x: number;
     private _y: number;
-    private _z: number;
 
     /**
      * Creates a new Vector2
      *
      * @param x The x value of the Vector
      * @param y The y value of the Vector
-     * @param z The z value of the Vector
      *
      * @example
-     * const vector = new Vector3(1, 2, 3);
+     * const vector = new Vector2(1, 2);
      */
-    public constructor(x = 0, y = 0, z = 0) {
+    public constructor(x = 0, y = 0) {
         this._x = x;
         this._y = y;
-        this._z = z;
     }
 
     public get x(): number {
@@ -33,13 +30,6 @@ export class Vector3 {
         this._y = value;
     }
 
-    public get z(): number {
-        return this._z;
-    }
-    public set z(value: number) {
-        this._z = value;
-    }
-
     /**
      * Returns the Vector3 data as an array
      *
@@ -50,7 +40,7 @@ export class Vector3 {
      *
      */
     public toArray(): number[] {
-        return [this._x, this._y, this._z];
+        return [this._x, this._y];
     }
 
     /**

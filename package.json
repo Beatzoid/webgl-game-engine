@@ -9,7 +9,7 @@
         "prepublishOnly": "eslint --ext ts,js .",
         "clean": "rm -rf dist && rm -rf public/dist",
         "http": "http-server --cors public",
-        "watch": "yarn clean && cd public && tsup --watch --format iife --dts --keep-names --sourcemap inline ../app.ts ../core/**/*.ts",
+        "watch": "yarn clean && cd public && tsup --format iife --dts --keep-names --sourcemap inline ../app.ts ../core/**/*.ts --watch ../core",
         "build": "yarn clean && cd public && tsup --format iife --dts --keep-names --sourcemap inline ../app.ts ../core/**/*.ts"
     },
     "keywords": [],
