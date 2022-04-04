@@ -3,7 +3,7 @@ import { gl } from "./gl";
 /**
  * Represents a WebGL Shader
  */
-export class Shader {
+export abstract class Shader {
     private _name: string;
     private _program: WebGLProgram | undefined;
     private _attributes: { [name: string]: number } = {};
@@ -13,32 +13,12 @@ export class Shader {
      * Creates a new shader
      *
      * @param name The name of the shader
-     * @param vertexSource The source of the vertex shader
-     * @param fragmentSource The source of the fragment shader
      *
      * @example
-     *  new Shader(
-     *       "example",
-     *       vertexShaderSource,
-     *       fragmentShaderSource
-     *   );
+     *  new Shader("example");
      */
-    public constructor(
-        name: string,
-        vertexSource: string,
-        fragmentSource: string
-    ) {
+    public constructor(name: string) {
         this._name = name;
-        const vertexShader = this.loadShader(vertexSource, gl.VERTEX_SHADER);
-        const fragmentShader = this.loadShader(
-            fragmentSource,
-            gl.FRAGMENT_SHADER
-        );
-
-        this.createProgram(vertexShader, fragmentShader);
-
-        this.detectAtttributes();
-        this.detectUniforms();
     }
 
     public get name(): string {
@@ -95,6 +75,28 @@ export class Shader {
      */
     public use(): void {
         gl.useProgram(this._program!!);
+    }
+
+    /**
+     * Load the shader
+     * @param vertexSource The vertex source for the shader
+     * @param fragmentSource The fragment source for the shader
+     *
+     * @example
+     * const shader = new Shader("example");
+     * shader.load(vertexSource, fragmentSource);
+     */
+    protected load(vertexSource: string, fragmentSource: string): void {
+        const vertexShader = this.loadShader(vertexSource, gl.VERTEX_SHADER);
+        const fragmentShader = this.loadShader(
+            fragmentSource,
+            gl.FRAGMENT_SHADER
+        );
+
+        this.createProgram(vertexShader, fragmentShader);
+
+        this.detectAtttributes();
+        this.detectUniforms();
     }
 
     private loadShader(source: string, shaderType: number): WebGLShader {

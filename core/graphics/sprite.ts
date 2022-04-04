@@ -1,9 +1,10 @@
 import { gl } from "../gl/gl";
 import { GlBuffer, AttributeInfo } from "../gl/glBuffer";
 import { Shader } from "../gl/shader";
+import { Matrix4x4 } from "../math/matrix4x4";
 import { Vector3 } from "../math/vector3";
-import { Texture } from "./texture";
-import { TextureManager } from "./textureManager";
+import { Material } from "./material";
+import { MaterialManager } from "./materialManager";
 
 export class Sprite {
     private _width: number;
@@ -11,8 +12,8 @@ export class Sprite {
     private _name: string;
 
     private _buffer: GlBuffer | undefined;
-    private _textureName: string;
-    private _texture: Texture;
+    private _materialName: string | undefined;
+    private _material: Material | undefined;
 
     /** The position of the sprite */
     public position: Vector3 = new Vector3();
@@ -21,7 +22,7 @@ export class Sprite {
      * Create a new sprite
      *
      * @param name The name of the sprite
-     * @param textureName The name of the texture
+     * @param materialName The name of the material
      * @param width The width of the sprite
      * @param height The height of the sprite
      *
@@ -34,16 +35,16 @@ export class Sprite {
      */
     public constructor(
         name: string,
-        textureName: string,
+        materialName: string,
         width = 100,
         height = 100
     ) {
         this._name = name;
         this._width = width;
         this._height = height;
-        this._textureName = textureName;
+        this._materialName = materialName;
 
-        this._texture = TextureManager.getTexture(this._textureName);
+        this._material = MaterialManager.getMaterial(this._materialName);
     }
 
     public get name(): string {
@@ -52,7 +53,9 @@ export class Sprite {
 
     public destory() {
         this._buffer?.destroy();
-        TextureManager.releaseTexture(this._textureName);
+        MaterialManager.releaseMaterial(this._materialName!);
+        this._material = undefined;
+        this._materialName = undefined;
     }
 
     /**
@@ -104,10 +107,24 @@ export class Sprite {
      * Sprite.draw(new Shader("player", vertexShaderSource, fragmentShaderSource));
      */
     public draw(shader: Shader): void {
-        this._texture.activateAndBind(0);
+        const modelLocation = shader.getUniformLocation("u_model") ?? null;
+        gl.uniformMatrix4fv(
+            modelLocation,
+            false,
+            new Float32Array(Matrix4x4.translation(this.position).data)
+        );
 
-        const diffuseLocation = shader.getUniformLocation("u_diffuse") ?? null;
-        gl.uniform1i(diffuseLocation, 0);
+        const colorLocation = shader.getUniformLocation("u_tint") ?? null;
+
+        gl.uniform4fv(colorLocation, this._material!.tint.toFloat32Array()!);
+
+        if (this._material?.diffuseTexture !== undefined) {
+            this._material.diffuseTexture.activateAndBind(0);
+
+            const diffuseLocation =
+                shader.getUniformLocation("u_diffuse") ?? null;
+            gl.uniform1i(diffuseLocation, 0);
+        }
 
         this._buffer?.bind();
         this._buffer?.draw();
