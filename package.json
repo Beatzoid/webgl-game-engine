@@ -9,19 +9,19 @@
         "prepublishOnly": "eslint --ext ts,js .",
         "clean": "rm -rf dist && rm -rf public/dist",
         "http": "http-server --cors public",
-        "watch": "yarn clean && cd public && tsup --format iife --dts --keep-names --sourcemap inline ../app.ts ../core/**/*.ts --watch ../core",
-        "build": "yarn clean && cd public && tsup --format iife --dts --keep-names --sourcemap inline ../app.ts ../core/**/*.ts"
+        "watch": "tsc -w",
+        "build": "tsc"
     },
     "keywords": [],
     "author": "Beatzoid",
     "license": "MIT",
     "devDependencies": {
-        "@typescript-eslint/eslint-plugin": "^4.33.0",
-        "@typescript-eslint/parser": "^4.33.0",
-        "eslint": "^8.6.0",
-        "eslint-plugin-jsdoc": "^37.5.0",
-        "http-server": "^14.0.0",
-        "tsup": "^5.11.10",
-        "typescript": "^4.5.4"
-    }
+        "@typescript-eslint/eslint-plugin": "^5.18.0",
+        "@typescript-eslint/parser": "^5.18.0",
+        "eslint": "^8.12.0",
+        "eslint-plugin-jsdoc": "^38.1.6",
+        "http-server": "^14.1.0",
+        "typescript": "^4.6.3"
+    },
+    "packageManager": "yarn@3.2.0"
 }
