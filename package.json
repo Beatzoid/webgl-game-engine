@@ -18,7 +18,7 @@
     "devDependencies": {
         "@typescript-eslint/eslint-plugin": "^4.33.0",
         "@typescript-eslint/parser": "^4.33.0",
-        "eslint": "^8.6.0",
+        "eslint": "^8.12.0",
         "eslint-plugin-jsdoc": "^37.5.0",
         "http-server": "^14.0.0",
         "tsup": "^5.11.10",
