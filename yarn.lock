@@ -401,7 +401,7 @@ __metadata:
     eslint: ^8.15.0
     eslint-plugin-jsdoc: ^38.1.6
     http-server: ^14.1.0
-    tsup: ^5.12.7
+    tsup: ^5.12.8
     typescript: ^4.6.4
   languageName: unknown
   linkType: soft
@@ -1720,6 +1720,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lodash.sortby@npm:^4.7.0":
+  version: 4.7.0
+  resolution: "lodash.sortby@npm:4.7.0"
+  checksum: db170c9396d29d11fe9a9f25668c4993e0c1331bcb941ddbd48fb76f492e732add7f2a47cfdf8e9d740fa59ac41bbfaf931d268bc72aab3ab49e9f89354d718c
+  languageName: node
+  linkType: hard
+
 "lodash@npm:^4.17.14":
   version: 4.17.21
   resolution: "lodash@npm:4.17.21"
@@ -2429,10 +2436,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"source-map@npm:^0.7.3":
-  version: 0.7.3
-  resolution: "source-map@npm:0.7.3"
-  checksum: cd24efb3b8fa69b64bf28e3c1b1a500de77e84260c5b7f2b873f88284df17974157cc88d386ee9b6d081f08fdd8242f3fc05c953685a6ad81aad94c7393dedea
+"source-map@npm:0.8.0-beta.0":
+  version: 0.8.0-beta.0
+  resolution: "source-map@npm:0.8.0-beta.0"
+  dependencies:
+    whatwg-url: ^7.0.0
+  checksum: e94169be6461ab0ac0913313ad1719a14c60d402bd22b0ad96f4a6cffd79130d91ab5df0a5336a326b04d2df131c1409f563c9dc0d21a6ca6239a44b6c8dbd92
   languageName: node
   linkType: hard
 
@@ -2586,6 +2595,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"tr46@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "tr46@npm:1.0.1"
+  dependencies:
+    punycode: ^2.1.0
+  checksum: 96d4ed46bc161db75dbf9247a236ea0bfcaf5758baae6749e92afab0bc5a09cb59af21788ede7e55080f2bf02dce3e4a8f2a484cc45164e29f4b5e68f7cbcc1a
+  languageName: node
+  linkType: hard
+
 "tree-kill@npm:^1.2.2":
   version: 1.2.2
   resolution: "tree-kill@npm:1.2.2"
@@ -2609,9 +2627,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tsup@npm:^5.12.7":
-  version: 5.12.7
-  resolution: "tsup@npm:5.12.7"
+"tsup@npm:^5.12.8":
+  version: 5.12.8
+  resolution: "tsup@npm:5.12.8"
   dependencies:
     bundle-require: ^3.0.2
     cac: ^6.7.12
@@ -2624,7 +2642,7 @@ __metadata:
     postcss-load-config: ^3.0.1
     resolve-from: ^5.0.0
     rollup: ^2.60.0
-    source-map: ^0.7.3
+    source-map: 0.8.0-beta.0
     sucrase: ^3.20.3
     tree-kill: ^1.2.2
   peerDependencies:
@@ -2635,7 +2653,7 @@ __metadata:
   bin:
     tsup: dist/cli-default.js
     tsup-node: dist/cli-node.js
-  checksum: ebb0d85f2ccf7754580a38b731a3e6bb09158379c1ab180545669c35b70519cf2b7b1e2160bf8e58432516d1d9f57c107c8dd133f874187e29c770bb109f5c8e
+  checksum: 52629d44e3804a51e2136b37d9cc725d736007aaf19ef4795b1c3f8ede5a786386e6e4f4dcfb5e8e00496b014ed767352d1b77a2d48dd8f72a064b94617934e5
   languageName: node
   linkType: hard
 
@@ -2743,12 +2761,30 @@ __metadata:
   languageName: node
   linkType: hard
 
+"webidl-conversions@npm:^4.0.2":
+  version: 4.0.2
+  resolution: "webidl-conversions@npm:4.0.2"
+  checksum: c93d8dfe908a0140a4ae9c0ebc87a33805b416a33ee638a605b551523eec94a9632165e54632f6d57a39c5f948c4bab10e0e066525e9a4b87a79f0d04fbca374
+  languageName: node
+  linkType: hard
+
 "whatwg-encoding@npm:^2.0.0":
   version: 2.0.0
   resolution: "whatwg-encoding@npm:2.0.0"
   dependencies:
     iconv-lite: 0.6.3
   checksum: 7087810c410aa9b689cbd6af8773341a53cdc1f3aae2a882c163bd5522ec8ca4cdfc269aef417a5792f411807d5d77d50df4c24e3abb00bb60192858a40cc675
+  languageName: node
+  linkType: hard
+
+"whatwg-url@npm:^7.0.0":
+  version: 7.1.0
+  resolution: "whatwg-url@npm:7.1.0"
+  dependencies:
+    lodash.sortby: ^4.7.0
+    tr46: ^1.0.1
+    webidl-conversions: ^4.0.2
+  checksum: fecb07c87290b47d2ec2fb6d6ca26daad3c9e211e0e531dd7566e7ff95b5b3525a57d4f32640ad4adf057717e0c215731db842ad761e61d947e81010e05cf5fd
   languageName: node
   linkType: hard
 
