@@ -11,9 +11,9 @@ export class MessageBus {
     private constructor() {}
 
     /**
-     * Add a subscrition to the specified message code
+     * Add a subscription to the specified message code
      *
-     * @param code The code to subcribe to
+     * @param code The code to subscribe to
      * @param handler The handler for the message
      *
      * @example
@@ -35,9 +35,9 @@ export class MessageBus {
     }
 
     /**
-     * Remove a subscrition from the specified message code
+     * Remove a subscription from the specified message code
      *
-     * @param code The code to subcribe to
+     * @param code The code to unsubscribe from
      * @param handler The handler for the message
      *
      * @example

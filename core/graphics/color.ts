@@ -5,7 +5,8 @@ export class Color {
     private _a: number;
 
     /**
-     * The color class is respnsible for managing colors
+     * The color class is responsible for managing colors
+     *
      * @param r The red value of the color. Defaults to 255
      * @param g The green value of the color. Defaults to 255
      * @param b The blue value of the color. Defaults to 255

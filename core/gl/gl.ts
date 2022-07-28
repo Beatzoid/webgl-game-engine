@@ -23,7 +23,7 @@ export class GLUtilities {
      *
      * @returns The canvas element
      *
-     * @throws an error is The canvas cannot be found or WebGL is unable to initalize
+     * @throws an error if canvas cannot be found or WebGL is unable to initialize
      */
     public static initialize(elementId?: string): HTMLCanvasElement {
         let canvas: HTMLCanvasElement;

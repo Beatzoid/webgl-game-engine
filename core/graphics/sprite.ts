@@ -51,7 +51,7 @@ export class Sprite {
         return this._name;
     }
 
-    public destory() {
+    public destroy() {
         this._buffer?.destroy();
         MaterialManager.releaseMaterial(this._materialName!);
         this._material = undefined;

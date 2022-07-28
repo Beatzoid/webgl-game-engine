@@ -1,5 +1,4 @@
 import { Material } from "./material";
-import { TextureManager } from "./textureManager";
 
 class MaterialReferenceNode {
     public material: Material;

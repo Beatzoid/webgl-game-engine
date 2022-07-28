@@ -79,6 +79,7 @@ export abstract class Shader {
 
     /**
      * Load the shader
+     *
      * @param vertexSource The vertex source for the shader
      * @param fragmentSource The fragment source for the shader
      *
@@ -95,7 +96,7 @@ export abstract class Shader {
 
         this.createProgram(vertexShader, fragmentShader);
 
-        this.detectAtttributes();
+        this.detectAttributes();
         this.detectUniforms();
     }
 
@@ -132,7 +133,7 @@ export abstract class Shader {
         }
     }
 
-    private detectAtttributes(): void {
+    private detectAttributes(): void {
         const attributeCount = gl.getProgramParameter(
             this._program!!,
             gl.ACTIVE_ATTRIBUTES

@@ -10,7 +10,7 @@ export class Material {
     private _tint: Color;
 
     /**
-     * The Material class is resonsible for managing Materials
+     * The Material class is responsible for managing Materials
      *
      * @param name The name of the material
      * @param diffuseTextureName The name of the diffuse texture

@@ -128,7 +128,7 @@ export class Texture implements IMessageHandler {
     }
 
     public onMessage(message: Message): void {
-        // If we recieve a message saying that our asset has been loaded
+        // If we receive a message saying that our asset has been loaded
         if (message.code === MESSAGE_ASSET_LOADER_ASSET_LOADED + this._name) {
             this.loadTextureFromAsset(message.context as ImageAsset);
         }

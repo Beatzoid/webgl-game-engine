@@ -37,7 +37,7 @@ export class GlBuffer {
      * @param elementSize The size of each element in the buffer
      * @param dataType The data type of the buffer. Default: `gl.FLOAT`
      * @param targetBufferType The buffer target type. Can be either `gl.ARRAY_BUFFER` or `gl.ELEMENT_ARRAY_BUFFER`. Default: `gl.ARRAY_BUFFER`
-     * @param mode The drawing mode of this buffer. (i.e. `gl.TRIANGLES` or `gl.LINES`). Defaukt: `gl.TRIANGLES`
+     * @param mode The drawing mode of this buffer. (i.e. `gl.TRIANGLES` or `gl.LINES`). Default: `gl.TRIANGLES`
      *
      * @example
      * const buffer = new GlBuffer(3);
@@ -92,12 +92,12 @@ export class GlBuffer {
     /**
      * Bind the Buffer
      *
-     * @param noramlized Indicates if the data should be normalized
+     * @param normalized Indicates if the data should be normalized
      *
      * @example
      * GLBuffer.bind(); // Normalized defaults to false
      */
-    public bind(noramlized = false): void {
+    public bind(normalized = false): void {
         gl.bindBuffer(this._targetBufferType, this._buffer);
 
         if (this._hasAttributeLocation) {
@@ -106,7 +106,7 @@ export class GlBuffer {
                     it.location!!,
                     it.size!!,
                     this._dataType,
-                    noramlized,
+                    normalized,
                     this._stride,
                     it.offset!! * this._typeSize
                 );
@@ -148,7 +148,7 @@ export class GlBuffer {
      * @param data The data to add
      *
      * @example
-     * GLBuffer.pushBackData(verticies);
+     * GLBuffer.pushBackData(vertices);
      */
     public pushBackData(data: number[]): void {
         for (const d of data) {
