@@ -9,3 +9,5 @@ yarn/*
 !.yarn/sdks
 !.yarn/versions
 .pnp.*
+
+.parcel-cache

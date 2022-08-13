@@ -2,15 +2,12 @@
     "name": "beat-webgl",
     "version": "1.0.0",
     "description": "A game engine made using Typescript",
-    "main": "public/dist/main.js",
-    "types": "public/dist/**/**.d.ts",
     "scripts": {
         "prepare": "yarn clean && npm run build",
         "prepublishOnly": "eslint --ext ts,js .",
         "clean": "rm -rf dist && rm -rf public/dist",
-        "serve": "serve public",
-        "watch": "yarn clean && cd public && tsup --format iife --dts --keep-names --sourcemap inline ../app.ts ../core/**/*.ts --watch ../core",
-        "build": "yarn clean && cd public && tsup --format iife --dts --keep-names --sourcemap inline ../app.ts ../core/**/*.ts"
+        "dev": "parcel public/index.html",
+        "build": "parcel build public/index.html"
     },
     "keywords": [],
     "author": "Beatzoid",
@@ -20,8 +17,7 @@
         "@typescript-eslint/parser": "^5.33.0",
         "eslint": "^8.21.0",
         "eslint-plugin-jsdoc": "^39.3.6",
-        "serve": "^14.0.1",
-        "tsup": "^6.2.2",
+        "parcel": "^2.7.0",
         "typescript": "^4.7.4"
     },
     "packageManager": "yarn@3.2.2"
