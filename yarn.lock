@@ -1384,7 +1384,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^5.40.1
     "@typescript-eslint/parser": ^5.40.1
     eslint: ^8.26.0
-    eslint-plugin-jsdoc: ^39.3.14
+    eslint-plugin-jsdoc: ^39.3.19
     parcel: ^2.7.0
     typescript: ^4.8.4
   languageName: unknown
@@ -1870,9 +1870,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-jsdoc@npm:^39.3.14":
-  version: 39.3.14
-  resolution: "eslint-plugin-jsdoc@npm:39.3.14"
+"eslint-plugin-jsdoc@npm:^39.3.19":
+  version: 39.3.19
+  resolution: "eslint-plugin-jsdoc@npm:39.3.19"
   dependencies:
     "@es-joy/jsdoccomment": ~0.33.0
     comment-parser: 1.3.1
@@ -1883,7 +1883,7 @@ __metadata:
     spdx-expression-parse: ^3.0.1
   peerDependencies:
     eslint: ^7.0.0 || ^8.0.0
-  checksum: 448cc78968a9d3481c21d1a2e99be4e8ccb73c9669ae0949df68957d8c219471501f68eb02095f869d91fde8c3d135563492fce5128523325d81dc5eb8112a15
+  checksum: 17f2f1ac396a3ad9cffea529a559cff4fcb7762d08cb42a365819276636d44c9494d11de75b089aaebff3f51779dc673b1b076a34a6f945116b8a30d04d1a60f
   languageName: node
   linkType: hard
 
